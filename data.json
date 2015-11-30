@@ -5,7 +5,6 @@
       "leon_events": [
         {
           "event": "leon_test",
-          "timestamp": 1448052928383,
           "host": "leon-local",
           "pid": 22508,
           "os": {
@@ -58,7 +57,6 @@
         },
         {
           "event": "leon_test",
-          "timestamp": 1448052943387,
           "host": "leon-local",
           "pid": 22508,
           "os": {
@@ -111,7 +109,6 @@
         },
         {
           "event": "leon_test",
-          "timestamp": 1448052958388,
           "host": "leon-local",
           "pid": 22508,
           "os": {
@@ -164,7 +161,6 @@
         },
         {
           "event": "leon_test",
-          "timestamp": 1448052973391,
           "host": "leon-local",
           "pid": 22508,
           "os": {
@@ -217,7 +213,6 @@
         },
         {
           "event": "leon_test",
-          "timestamp": 1448052988394,
           "host": "leon-local",
           "pid": 22508,
           "os": {

@@ -123,16 +123,21 @@ class LogStash::Inputs::GoodHttp < LogStash::Inputs::Base
             event["events"].each do |key, value|
               if value.kind_of?(Array)
                 for good_event in value
-                  good_event["good_type"] = key
-                  good_event["host"] = remote_host
-                  good_event["headers"] = req
-                  queue << good_event
+                  good_logstash_event = LogStash::Event.new(good_event)
+                  if !good_logstash_event.include?("type")
+                    good_logstash_event["type"] = event["type"]
+                  end
+                  good_logstash_event["good-type"] = key
+                  good_logstash_event["host"] = remote_host
+                  good_logstash_event["headers"] = req
+                  queue << good_logstash_event
                 end
               else
-                value["good_type"] = key
-                value["host"] = remote_host
-                value["headers"] = req
-                queue << value
+                good_logstash_event = LogStash::Event.new(value)
+                good_logstash_event["good-type"] = key
+                good_logstash_event["host"] = remote_host
+                good_logstash_event["headers"] = req
+                queue << good_logstash_event
               end
             end
           else
