@@ -1,5 +1,5 @@
 require "logstash/devutils/rspec/spec_helper"
-require "logstash/inputs/http"
+require "logstash/inputs/goodhttp"
 require "json"
 require "ftw"
 require "stud/temporary"
