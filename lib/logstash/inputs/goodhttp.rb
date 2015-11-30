@@ -120,7 +120,7 @@ class LogStash::Inputs::GoodHttp < LogStash::Inputs::Base
           event["headers"] = req
           decorate(event)
           if event.include?("events")
-            event["events"] do |key, value|
+            for event["events"] do |key, value|
               if value.kind_of?(Array)
                 for good_event in value
                   good_event["good-type"] = key
