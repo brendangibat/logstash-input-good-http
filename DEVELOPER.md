@@ -1,1 +1,1 @@
-# logstash-input-http
+# logstash-input-good-http

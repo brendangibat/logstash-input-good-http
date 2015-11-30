@@ -1,5 +1,5 @@
 Gem::Specification.new do |s|
-  s.name = 'logstash-input-http'
+  s.name = 'logstash-input-good-http'
   s.version         = '2.0.2'
   s.licenses = ['Apache License (2.0)']
   s.summary = "Logstash Input plugin that receives HTTP requests"
