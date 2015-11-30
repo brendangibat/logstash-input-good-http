@@ -32,7 +32,7 @@ end
 # https://docs.oracle.com/cd/E19509-01/820-3503/ggfen/index.html[Java Keystore
 # format]
 #
-class LogStash::Inputs::Http < LogStash::Inputs::Base
+class LogStash::Inputs::GoodHttp < LogStash::Inputs::Base
   #TODO: config :cacert, :validate => :path
 
   config_name "http"
@@ -175,4 +175,4 @@ class LogStash::Inputs::Http < LogStash::Inputs::Base
     # do nothing
   end
 
-end # class LogStash::Inputs::Http
+end # class LogStash::Inputs::GoodHttp

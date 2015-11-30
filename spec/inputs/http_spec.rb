@@ -4,7 +4,7 @@ require "json"
 require "ftw"
 require "stud/temporary"
 
-describe LogStash::Inputs::Http do
+describe LogStash::Inputs::GoodHttp do
 
   before do
     srand(RSpec.configuration.seed)
@@ -23,7 +23,7 @@ describe LogStash::Inputs::Http do
   end
 
   describe "#run" do
-    subject { LogStash::Inputs::Http.new }
+    subject { LogStash::Inputs::GoodHttp.new }
     before :each do
       subject.register
       Thread.new { subject.run(queue) }
@@ -38,7 +38,7 @@ describe LogStash::Inputs::Http do
   end
 
   context "with default codec" do
-    subject { LogStash::Inputs::Http.new("port" => port) }
+    subject { LogStash::Inputs::GoodHttp.new("port" => port) }
     context "when receiving a text/plain request" do
       it "should process the request normally" do
         subject.register
@@ -64,7 +64,7 @@ describe LogStash::Inputs::Http do
   end
 
   context "with json codec" do
-    subject { LogStash::Inputs::Http.new("port" => port, "codec" => "json") }
+    subject { LogStash::Inputs::GoodHttp.new("port" => port, "codec" => "json") }
     it "should parse the json body" do
       subject.register
       Thread.new { subject.run(queue) }
@@ -75,7 +75,7 @@ describe LogStash::Inputs::Http do
   end
 
   context "when using a custom codec mapping" do
-    subject { LogStash::Inputs::Http.new("port" => port,
+    subject { LogStash::Inputs::GoodHttp.new("port" => port,
                                          "additional_codecs" => { "application/json" => "plain" }) }
     it "should decode the message accordingly" do
       body = { "message" => "Hello" }.to_json
@@ -90,21 +90,21 @@ describe LogStash::Inputs::Http do
   end
 
   context "with :ssl => false" do
-    subject { LogStash::Inputs::Http.new("port" => port, "ssl" => false) }
+    subject { LogStash::Inputs::GoodHttp.new("port" => port, "ssl" => false) }
     it "should not raise exception" do
       expect { subject.register }.to_not raise_exception
     end
   end
   context "with :ssl => true" do
     context "without :keystore and :keystore_password" do
-      subject { LogStash::Inputs::Http.new("port" => port, "ssl" => true) }
+      subject { LogStash::Inputs::GoodHttp.new("port" => port, "ssl" => true) }
       it "should raise exception" do
         expect { subject.register }.to raise_exception(LogStash::ConfigurationError)
       end
     end
     context "with :keystore and :keystore_password" do
       let(:keystore) { Stud::Temporary.file }
-      subject { LogStash::Inputs::Http.new("port" => port, "ssl" => true,
+      subject { LogStash::Inputs::GoodHttp.new("port" => port, "ssl" => true,
                                            "keystore" => keystore.path,
                                            "keystore_password" => "pass") }
       it "should not raise exception" do
@@ -114,7 +114,7 @@ describe LogStash::Inputs::Http do
   end
   describe "basic auth" do
     user = "test"; password = "pwd"
-    subject { LogStash::Inputs::Http.new("port" => port, "user" => user, "password" => password) }
+    subject { LogStash::Inputs::GoodHttp.new("port" => port, "user" => user, "password" => password) }
     let(:auth_token) { Base64.strict_encode64("#{user}:#{password}") }
     before :each do
       subject.register
