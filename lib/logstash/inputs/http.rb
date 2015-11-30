@@ -35,7 +35,7 @@ end
 class LogStash::Inputs::GoodHttp < LogStash::Inputs::Base
   #TODO: config :cacert, :validate => :path
 
-  config_name "http"
+  config_name "goodhttp"
 
   # Codec used to decode the incoming data.
   # This codec will be used as a fall-back if the content-type
